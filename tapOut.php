@@ -1,5 +1,5 @@
 <?php
-require 'koneksiBaru.php';
+require 'connectLocal.php';
     date_default_timezone_set("Asia/Jakarta");
 
     if ($_SERVER['REQUEST_METHOD']=="POST") {
@@ -16,6 +16,9 @@ require 'koneksiBaru.php';
         $sqlMasuk = mysqli_query($con, $masuk);
         $countMasuk = mysqli_num_rows($sqlMasuk);
         $listMasuk = mysqli_fetch_assoc($sqlMasuk);
+
+        $deleteKeluar = "DELETE FROM keluar WHERE norfid = '$rfid' AND statuspaymentdesc = 'GAGAL' AND date(keluar) = date(NOW())";
+        $sqlDelete = mysqli_query($con, $deleteKeluar);
 
 
         if($countMasuk < 1){
@@ -192,7 +195,8 @@ require 'koneksiBaru.php';
                     echo json_encode($result);
                 }
             }else{
-                $insert = "INSERT INTO keluar (kode, pintum, masuk, keluar, plat, pintuk, jenisk, jenism, bayar, norfid, paket, kadaluarsa) VALUES('$kode', '$pintu', '$waktu', NOW(), '$nopol', '$pintuK', '$jenisK', '$jenis', '$tarif', '$rfid', '$', '$')";
+
+                $insert = "INSERT INTO keluar (kode, pintum, masuk, keluar, plat, pintuk, jenisk, jenism, bayar, norfid, paket, kadaluarsa) VALUES('$kode', '$pintu', '$waktu', NOW(), '$nopol', '$pintuK', '$jenisK', '$jenis', '$tarif', '$rfid', '', '')";
                 $sqlInsert = mysqli_query($con, $insert);
                 $listUmum = array(
                     "nama" => "UMUM",

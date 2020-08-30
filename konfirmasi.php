@@ -30,8 +30,8 @@ require 'koneksiBaru.php';
         }
         
 		
-		$updateKonfirmasi = "UPDATE konfirmasi  set saldo = '$lastbalance', tarif = '$amounttrx', status = '$statuspayment' WHERE pintu = '$pintuKeluar'";
-		$konfirmasiKeluar = mysqli_query($con, $updateKonfirmasi);
+		// $insertKonfirmasi = "INSERT INTO konfirmasi  set saldo = '$lastbalance', tarif = '$amounttrx', status = '$statuspayment' WHERE pintu = '$pintuKeluar'";
+
 		
 		if(empty($nobuktimkp) || empty($nobuktiduta) || empty($statuspaymentdesc) || empty($statuspayment)){
 			$response = array(
@@ -43,28 +43,31 @@ require 'koneksiBaru.php';
 			header('Content-Type: application/json');
 			echo json_encode($response);
 		}else if(mysqli_query($con, $updateKeluar)){
+			
+			$insertKonfirmasi = "INSERT INTO konfirmasi  (saldo, tarif, status) VALUES ('$lastbalance','$amounttrx','$statuspayment') WHERE pintu = '$pintuKeluar'";
+			$konfirmasiKeluar = mysqli_query($con, $insertKonfirmasi);
 			$lastBalanceCheck = array('last balance' => $lastbalance);
         	$response = array(
 			'status' => '200',
-			'message' => 'Update sukses',
+			'message' => 'SUKSES KONFIRMASI',
 			'result'  => $lastBalanceCheck,
 			);
 			//http_response_code(403);
 			//echo json_encode($response);
 			header('Content-Type: application/json');
 
-			if($statuspayment == '200'){
-				$deleteMasuk = "DELETE FROM masuk WHERE kode = '$nobuktiduta'";
-				mysqli_query($con, $deleteMasuk);
-				$response = array(
-					'status' => '201',
-					'message' => 'SUKSES KONFIRMASI',
-					'result'  => '',
-					);
-				//http_response_code(403);
-				header('Content-Type: application/json');
-				echo json_encode($response);
-			}
+			// if($statuspayment == '200'){
+			// 	$deleteMasuk = "DELETE FROM masuk WHERE kode = '$nobuktiduta'";
+			// 	mysqli_query($con, $deleteMasuk);
+			// 	$response = array(
+			// 		'status' => '201',
+			// 		'message' => 'SUKSES KONFIRMASI',
+			// 		'result'  => '',
+			// 		);
+			// 	//http_response_code(403);
+			// 	header('Content-Type: application/json');
+			// 	echo json_encode($response);
+			// }
 		}else{
 			$response = array(
 				'status' => '404',
@@ -75,16 +78,6 @@ require 'koneksiBaru.php';
 			header('Content-Type: application/json');
 			echo json_encode($response);
 		}
-	}else{
-		//todo: method selain post
-		$response = array(
-			'status' => '403',
-			'message' => 'Access Forbidden',
-			'result'  => null,
-			);
-		//http_response_code(403);
-		header('Content-Type: application/json');
-		echo json_encode($response);
 	}
 
  ?>

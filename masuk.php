@@ -4,8 +4,6 @@
 	require 'key.php';
 
 
-
-
 	if ($_SERVER['REQUEST_METHOD']=="POST") {
 			$rfid = '';
 			$jenis = '';
@@ -31,7 +29,6 @@
             foreach($perintahPenomeran as $i){
                 $kode =  $i['kode'];
             }
-            var_dump($kode);
 
             $masuk = "SELECT * FROM masuk WHERE rfid = '$rfid'";
             $sqlMasuk = mysqli_query($con, $masuk);
@@ -48,7 +45,7 @@
                 $response = array(
                     "status"  => "200",
                     "message" => "SUKSES",
-                    "kode" => $kode,
+                    "kode" => $kode
                     );
                     echo json_encode($response);
                 
@@ -57,7 +54,7 @@
                 $response = array(
                     "status"  => "403",
                     "waktu" => $waktu,
-                    "kode" => "$kode",
+                    "kode" => $kode
                     );
                     echo json_encode($response);
             }

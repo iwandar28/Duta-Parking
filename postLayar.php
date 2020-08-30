@@ -1,6 +1,6 @@
 <?php 
 
-	require 'connect.php';
+require 'koneksiBaru.php';
 
 	if ($_SERVER['REQUEST_METHOD']=="POST") {
 

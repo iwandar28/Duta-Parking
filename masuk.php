@@ -1,6 +1,6 @@
 <?php 
 
-require 'koneksiBaru.php';
+    require 'koneksiBaru.php';
 	require 'key.php';
 
 

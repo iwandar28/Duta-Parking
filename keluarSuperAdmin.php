@@ -1,5 +1,5 @@
 <?php
-    require 'connect.php';
+    require 'koneksiBaru.php';
     date_default_timezone_set("Asia/Jakarta");
 
     // $mainInsert = "INSERT INTO konfirmasi VALUE('','','','','','','','','','')";

@@ -48,7 +48,7 @@
                 $response = array(
                     "status"  => "200",
                     "message" => "SUKSES",
-                    "kode" => "$kode",
+                    "kode" => $kode,
                     );
                     echo json_encode($response);
                 

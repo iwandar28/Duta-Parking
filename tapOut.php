@@ -136,7 +136,7 @@ require 'connect.php';
                         // $delete = "DELETE konfirmasi WHERE pintu = $pintuK ";
                         // $sqlDelete = mysqli_query($con, $delete);
 
-                        $insertKon = "INSERT INTO konfirmasi (id, pintu, proses, waktum, waktuk, lama, tarif, saldo, kadaluarsa, nama, status, pesan) VALUES('','$pintuK','','$waktu', NOW(), '$intJam Jam $intMenit Menit','0', '0', '$akhirKada', '')";
+                        $insertKon = "INSERT INTO konfirmasi (id, pintu, proses, waktum, waktuk, lama, tarif, saldo, kadaluarsa, nama, status, pesan, kode) VALUES('','$pintuK','','$waktu', NOW(), '$intJam Jam $intMenit Menit','0', '0', '$akhirKada', 'tes1','tes2','tes3' '$kode')";
                         $sqlInsertKon = mysqli_query($con, $sqlInsertKon);
 
                         $tarifRowTotal["Tarif"] = 0;

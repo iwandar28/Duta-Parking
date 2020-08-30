@@ -48,7 +48,7 @@
                 header('Content-Type: application/json');
                 echo json_encode($response);
 
-                sleep(5);
+                sleep(2);
 
                 $delete = "DELETE FROM konfirmasi WHERE id ='$id'";
                 mysqli_query($con, $delete);

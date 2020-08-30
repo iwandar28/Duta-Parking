@@ -12,7 +12,7 @@ require 'connect.php';
         $jenisK = trim(isset($_POST['jeniskendaraan'])) ? $_POST['jeniskendaraan'] : '';
         $pintuK = trim(isset($_POST['pintukeluar'])) ? $_POST['pintukeluar'] : '';
 
-        $masuk = "SELECT kode, jenis, pintu, waktu, nopol, cardnumber, cardtype FROM masuk WHERE rfid = '$rfid' LIMIT 1";
+        $masuk = "SELECT kode, jenis, pintu, waktu, nopol, cardnumber, cardtype FROM masuk WHERE rfid = '$rfid'";
         $sqlMasuk = mysqli_query($con, $masuk);
         $countMasuk = mysqli_num_rows($sqlMasuk);
         $listMasuk = mysqli_fetch_assoc($sqlMasuk);
@@ -28,6 +28,7 @@ require 'connect.php';
                 "result"  => '',
                 );
                 echo json_encode($response);
+                sleep(2);
 
                 // $deleteUmum = "DELETE FROM konfirmasi WHERE pintu = '$pintuK'";
                 // mysqli_query($con, $deleteUmum);
@@ -154,6 +155,8 @@ require 'connect.php';
                             "result" => $row
                         );
                         echo json_encode($result);
+
+                        sleep(2);
                     }else{
                         $insert = "INSERT INTO keluar (kode, pintum, masuk, keluar, plat, pintuk, jenisk, jenism, bayar, norfid, paket, kadaluarsa) VALUES('$kode', '$pintu', '$waktu', NOW(), '$nopol', '$pintuK', '$jenisK', '$jenis', '$tarif', '$rfid', '$statusStatus', '$akhirKada')";
                         $sqlInsert = mysqli_query($con, $insert);
@@ -174,6 +177,7 @@ require 'connect.php';
                             "result" => $row
                         );
                         echo json_encode($result);
+                        sleep(2);
                     }
 
                 }else{
@@ -194,6 +198,7 @@ require 'connect.php';
                         "result" => $row
                     );
                     echo json_encode($result);
+                    sleep(2);
                 }
             }else{
 
@@ -221,6 +226,7 @@ require 'connect.php';
                     "result" => $row
                 );
                 echo json_encode($result);
+                sleep(2);
             }
         }
 

@@ -30,8 +30,7 @@ require 'koneksiBaru.php';
         }
         
 		
-		// $insertKonfirmasi = "INSERT INTO konfirmasi  set saldo = '$lastbalance', tarif = '$amounttrx', status = '$statuspayment' WHERE pintu = '$pintuKeluar'";
-
+		
 		
 		if(empty($nobuktimkp) || empty($nobuktiduta) || empty($statuspaymentdesc) || empty($statuspayment)){
 			$response = array(
@@ -43,13 +42,14 @@ require 'koneksiBaru.php';
 			header('Content-Type: application/json');
 			echo json_encode($response);
 		}else if(mysqli_query($con, $updateKeluar)){
-			
-			$insertKonfirmasi = "INSERT INTO konfirmasi  (saldo, tarif, status) VALUES ('$lastbalance','$amounttrx','$statuspayment') WHERE pintu = '$pintuKeluar'";
-			$konfirmasiKeluar = mysqli_query($con, $insertKonfirmasi);
+
+			$updateKonfirmasi = "UPDATE konfirmasi  set saldo = '$lastbalance', tarif = '$amounttrx', status = '$statuspayment' WHERE pintu = '$pintuKeluar'";
+			$konfirmasiKeluar = mysqli_query($con, $updateKonfirmasi);
+
 			$lastBalanceCheck = array('last balance' => $lastbalance);
         	$response = array(
 			'status' => '200',
-			'message' => 'SUKSES KONFIRMASI',
+			'message' => 'Update sukses',
 			'result'  => $lastBalanceCheck,
 			);
 			//http_response_code(403);
@@ -78,6 +78,16 @@ require 'koneksiBaru.php';
 			header('Content-Type: application/json');
 			echo json_encode($response);
 		}
+	}else{
+		//todo: method selain post
+		$response = array(
+			'status' => '403',
+			'message' => 'Access Forbidden',
+			'result'  => null,
+			);
+		//http_response_code(403);
+		header('Content-Type: application/json');
+		echo json_encode($response);
 	}
 
  ?>

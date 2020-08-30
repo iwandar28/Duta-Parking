@@ -138,7 +138,7 @@ require 'connect.php';
                         // $sqlDelete = mysqli_query($con, $delete);
 
                         $insertKon = "INSERT INTO konfirmasi (id, pintu, proses, waktum, waktuk, lama, tarif, saldo, kadaluarsa, nama, status, pesan, kode) VALUES('','$pintuK','','$waktu', NOW(), '$intJam Jam $intMenit Menit','0', '0', '$akhirKada', 'tes1','tes2','tes3' '$kode')";
-                        $sqlInsertKon = mysqli_query($con, $sqlInsertKon);
+                        $sqlInsertKon = mysqli_query($con, $insertKon);
 
                         $tarifRowTotal["Tarif"] = 0;
                         $row = array(
@@ -162,7 +162,7 @@ require 'connect.php';
                         $sqlInsert = mysqli_query($con, $insert);
 
                         $insertKon = "INSERT INTO konfirmasi (id, pintu, proses, waktum, waktuk, lama, tarif, saldo, kadaluarsa, nama, status, pesan, kode) VALUES('','$pintuK','','$waktu', NOW(), '$intJam Jam $intMenit Menit','0', '0', '$akhirKada', 'tes1','tes2','tes3' '$kode')";
-                        $sqlInsertKon = mysqli_query($con, $sqlInsertKon);
+                        $sqlInsertKon = mysqli_query($con, $insertKon);
 
                         // $delete = "DELETE konfirmasi WHERE pintu = $pintuK ";
 
@@ -188,7 +188,7 @@ require 'connect.php';
                     $sqlInsert = mysqli_query($con, $insert);
 
                     $insertKon = "INSERT INTO konfirmasi (id, pintu, proses, waktum, waktuk, lama, tarif, saldo, kadaluarsa, nama, status, pesan, kode) VALUES('','$pintuK','','$waktu', NOW(), '$intJam Jam $intMenit Menit','0', '0', '$akhirKada', 'tes1','tes2','tes3' '$kode')";
-                    $sqlInsertKon = mysqli_query($con, $sqlInsertKon);
+                    $sqlInsertKon = mysqli_query($con, $insertKon);
                     
                     $row = array(
                         "Kartu" => "Valid",
@@ -212,7 +212,7 @@ require 'connect.php';
                 $sqlInsert = mysqli_query($con, $insert);
 
                 $insertKon = "INSERT INTO konfirmasi (id, pintu, proses, waktum, waktuk, lama, tarif, saldo, kadaluarsa, nama, status, pesan, kode) VALUES('','$pintuK','','$waktu', NOW(), '$intJam Jam $intMenit Menit','0', '0', '$akhirKada', 'tes1','tes2','tes3' '$kode')";
-                $sqlInsertKon = mysqli_query($con, $sqlInsertKon);
+                $sqlInsertKon = mysqli_query($con, $insertKon);
 
                 $listUmum = array(
                     "nama" => "UMUM",

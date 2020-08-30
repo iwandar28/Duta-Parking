@@ -1,6 +1,6 @@
 <?php 
 
-    require 'koneksiBaru.php';
+    require 'connect.php';
 	require 'key.php';
 
 
@@ -31,6 +31,7 @@
             foreach($perintahPenomeran as $i){
                 $kode =  $i['kode'];
             }
+            var_dump($kode);
 
             $masuk = "SELECT * FROM masuk WHERE rfid = '$rfid'";
             $sqlMasuk = mysqli_query($con, $masuk);
@@ -47,6 +48,7 @@
                 $response = array(
                     "status"  => "200",
                     "message" => "SUKSES",
+                    "kode" => $kode,
                     );
                     echo json_encode($response);
                 

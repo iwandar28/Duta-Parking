@@ -29,8 +29,8 @@ require 'connect.php';
                 );
                 echo json_encode($response);
 
-                $deleteUmum = "DELETE FROM konfirmasi WHERE pintu = '$pintuK'";
-                mysqli_query($con, $deleteUmum);
+                // $deleteUmum = "DELETE FROM konfirmasi WHERE pintu = '$pintuK'";
+                // mysqli_query($con, $deleteUmum);
                 
                 $insertError1 = "INSERT INTO konfirmasi(pintu, status, waktuk) VALUES('$pintuK','kendaraan tidak ada masuk',NOW())";
                 mysqli_query($con, $insertError1);
@@ -133,10 +133,11 @@ require 'connect.php';
                         $insert = "INSERT INTO keluar (kode, pintum, masuk, keluar, plat, pintuk, jenisk, jenism, bayar, norfid, paket, kadaluarsa) VALUES('$kode', '$pintu', '$waktu', NOW(), '$nopol', '$pintuK', '$jenisK', '$jenis', '0', '$rfid', '$statusStatus', '$akhirKada')";
                         $sqlInsert = mysqli_query($con, $insert);
 
-                        $delete = "DELETE konfirmasi WHERE pintu = $pintuK ";
+                        // $delete = "DELETE konfirmasi WHERE pintu = $pintuK ";
                         // $sqlDelete = mysqli_query($con, $delete);
 
-                        // $insertKon = "INSERT INTO konfirmasi (id, pintu, proses, waktum, waktuk, lama, tarif, saldo, kadaluarsa, nama, status, pesan) VALUES('','$pintuK','','$waktu', NOW(), '$intJam Jam $intMenit Menit','0', '0', '$akhirKada', '')";
+                        $insertKon = "INSERT INTO konfirmasi (id, pintu, proses, waktum, waktuk, lama, tarif, saldo, kadaluarsa, nama, status, pesan) VALUES('','$pintuK','','$waktu', NOW(), '$intJam Jam $intMenit Menit','0', '0', '$akhirKada', '')";
+                        $sqlInsertKon = mysqli_query($con, $sqlInsertKon);
 
                         $tarifRowTotal["Tarif"] = 0;
                         $row = array(

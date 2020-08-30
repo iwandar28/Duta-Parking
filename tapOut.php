@@ -1,5 +1,5 @@
 <?php
-require 'koneksiBaru.php';
+require 'connect.php';
     date_default_timezone_set("Asia/Jakarta");
 
     if ($_SERVER['REQUEST_METHOD']=="POST") {
@@ -196,7 +196,7 @@ require 'koneksiBaru.php';
                 }
             }else{
 
-                $insert = "INSERT INTO keluar (kode, pintum, masuk, keluar, plat, pintuk, jenisk, jenism, bayar, norfid, paket, kadaluarsa) VALUES('$kode', '$pintu', '$waktu', NOW(), '$nopol', '$pintuK', '$jenisK', '$jenis', '$tarif', '$rfid', '', '')";
+                $insert = "INSERT INTO keluar (kode, pintum, masuk, keluar, plat, pintuk, jenisk, jenism, bayar, norfid, paket, kadaluarsa) VALUES('$kode', '$pintu', '$waktu', NOW(), '', '$pintuK', '$jenisK', '$jenis', '$tarif', '$rfid', '', '')";
                 $sqlInsert = mysqli_query($con, $insert);
                 $listUmum = array(
                     "nama" => "UMUM",

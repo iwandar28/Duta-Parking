@@ -7,7 +7,7 @@
 			
             $pintu = trim(isset($_POST['pintu'])) ? $_POST['pintu'] : '';
             
-            $select = "SELECT * FROM konfirmasi WHERE pintu = '$pintu' AND status != '205' LIMIT 1";
+            $select = "SELECT * FROM konfirmasi WHERE pintu = '$pintu' AND status != '205' ORDER BY id DESC LIMIT 1";
             $perintah = mysqli_query($con, $select);
             $jumlahPerintah = mysqli_num_rows($perintah);
 
@@ -49,7 +49,7 @@
                 echo json_encode($response);
 
                 $delete = "DELETE FROM konfirmasi WHERE id ='$id'";
-                mysqli_query($con, $delete) or die ("data error".mysqli_error());
+                mysqli_query($con, $delete);
 
             }else{
                 $response = array(

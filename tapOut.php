@@ -32,7 +32,7 @@ require 'connect.php';
                 // $deleteUmum = "DELETE FROM konfirmasi WHERE pintu = '$pintuK'";
                 // mysqli_query($con, $deleteUmum);
                 
-                $insertError1 = "INSERT INTO konfirmasi(pintu, status, waktuk) VALUES('$pintuK','kendaraan tidak ada masuk',NOW())";
+                $insertError1 = "INSERT INTO konfirmasi(pintu, status, waktuk) VALUES('$pintuK','411',NOW())";
                 mysqli_query($con, $insertError1);
         }else{
             //todo: ambil semua data dari masuk

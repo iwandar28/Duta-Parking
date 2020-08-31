@@ -30,8 +30,6 @@ require 'koneksiBaru.php';
         }
         
 		
-		
-		
 		if(empty($nobuktimkp) || empty($nobuktiduta) || empty($statuspaymentdesc) || empty($statuspayment)){
 			$response = array(
 				'status' => '404',
@@ -56,18 +54,18 @@ require 'koneksiBaru.php';
 			//echo json_encode($response);
 			header('Content-Type: application/json');
 
-			// if($statuspayment == '200'){
-			// 	$deleteMasuk = "DELETE FROM masuk WHERE kode = '$nobuktiduta'";
-			// 	mysqli_query($con, $deleteMasuk);
-			// 	$response = array(
-			// 		'status' => '201',
-			// 		'message' => 'SUKSES KONFIRMASI',
-			// 		'result'  => '',
-			// 		);
-			// 	//http_response_code(403);
-			// 	header('Content-Type: application/json');
-			// 	echo json_encode($response);
-			// }
+			if($statuspayment == '200'){
+				$deleteMasuk = "DELETE FROM masuk WHERE kode = '$nobuktiduta'";
+				mysqli_query($con, $deleteMasuk);
+				$response = array(
+					'status' => '201',
+					'message' => 'SUKSES KONFIRMASI',
+					'result'  => '',
+					);
+				//http_response_code(403);
+				header('Content-Type: application/json');
+				echo json_encode($response);
+			}
 		}else{
 			$response = array(
 				'status' => '404',

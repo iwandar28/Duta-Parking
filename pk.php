@@ -28,6 +28,7 @@
                     $nama = $i['nama'];
                     $status = $i['status'];
                     $pesan = $i['pesan'];
+                    $kode = $i['kode'];
                 }
 
                 $response = array(
@@ -43,12 +44,13 @@
                     'nama' => $nama,
                     'status' => $status,
                     'pesan' => $pesan,
+                    'kode' => $kode,
                 );
 
                 header('Content-Type: application/json');
                 echo json_encode($response);
 
-                sleep(3);
+                
 
                 $delete = "DELETE FROM konfirmasi WHERE id ='$id'";
                 mysqli_query($con, $delete);

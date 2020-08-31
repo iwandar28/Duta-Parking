@@ -1,7 +1,7 @@
 <?php 
 
-require 'koneksiBaru.php';
-    // require 'koneksiBaru.php';
+	//require 'connect.php';
+	require 'koneksiBaru.php';
 
 	if ($_SERVER['REQUEST_METHOD']=="POST") {
 
@@ -20,17 +20,19 @@ require 'koneksiBaru.php';
 		$statuspayment = trim(isset($_POST['statuspayment'])) ? $_POST['statuspayment'] : '';
         
 		$updateKeluar = "UPDATE keluar SET amounttrx = '$amounttrx', noref = '$nobuktimkp', statuspaymentdesc = '$statuspaymentdesc', saldoakhir = '$lastbalance' WHERE kode = '$nobuktiduta' ";
-        
-        $selectKeluar = "SELECT pintuk FROM keluar WHERE kode = '$nobuktiduta'";
+		$selectKeluar = "SELECT pintuk FROM keluar WHERE kode = '$nobuktiduta'";
 		$perintahKeluar = mysqli_query($con, $selectKeluar);
-    
+
 
 		foreach($perintahKeluar as $i){
 			$pintuKeluar = $i['pintuk'];
-        }
-        
+		}
+
 		
-		if(empty($nobuktimkp) || empty($nobuktiduta) || empty($statuspaymentdesc) || empty($statuspayment)){
+		$updateKonfirmasi = "UPDATE konfirmasi  set saldo = '$lastbalance', tarif = '$amounttrx', status = '$statuspayment' WHERE pintu = '$pintuKeluar'";
+		$konfirmasiKeluar = mysqli_query($con, $updateKonfirmasi);
+		
+		if(empty($nobuktimkp) || empty($nobuktiduta) || $amounttrx == null || $lastbalance == null || empty($statuspaymentdesc) || empty($statuspayment)){
 			$response = array(
 				'status' => '404',
 				'message' => 'ADA KEY YANG BELUM DI INPUT',
@@ -40,10 +42,6 @@ require 'koneksiBaru.php';
 			header('Content-Type: application/json');
 			echo json_encode($response);
 		}else if(mysqli_query($con, $updateKeluar)){
-
-			$updateKonfirmasi = "UPDATE konfirmasi  set saldo = '$lastbalance', tarif = '$amounttrx', status = '$statuspayment' WHERE pintu = '$pintuKeluar'";
-			$konfirmasiKeluar = mysqli_query($con, $updateKonfirmasi);
-
 			$lastBalanceCheck = array('last balance' => $lastbalance);
         	$response = array(
 			'status' => '200',

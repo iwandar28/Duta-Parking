@@ -12,7 +12,8 @@ require 'koneksiBaru.php';
         $pesan = trim(isset($_POST['pesan'])) ? $_POST['pesan'] : '';
         $pintu = trim(isset($_POST['pintu'])) ? $_POST['pintu'] : '';
 
-    
+        
+
         if(empty($status) || empty($pesan || empty($pintu))){
             $response = array(
                 'status' => '404',
@@ -23,12 +24,12 @@ require 'koneksiBaru.php';
             header('Content-Type: application/json');
             echo json_encode($response);
         }else{
-            $insert = "INSERT INTO konfirmasi VALUES('','$pintu','','','','','','','','','$status','$pesan')";
+            $insert = "INSERT INTO konfirmasi (pintu, status, pesan) VALUES('$pintu','$status','$pesan')";
             if(mysqli_query($con, $insert)){
                 $response = array(
-                    'status' => $status,
-                    'message' => $pesan,
-                    'result'  => $pintu,
+                    'status' => "$status",
+                    'message' => "$pesan",
+                    'result'  => "$pintu",
                     );
                 //http_response_code(403);
                 header('Content-Type: application/json');

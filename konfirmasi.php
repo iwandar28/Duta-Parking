@@ -1,6 +1,6 @@
 <?php 
 
-require 'koneksiBaru.php';
+require 'connect.php';
     // require 'koneksiBaru.php';
 
 	if ($_SERVER['REQUEST_METHOD']=="POST") {
@@ -29,8 +29,8 @@ require 'koneksiBaru.php';
 		// 	$pintuKeluar = $i['pintuk'];
 		// }
 		
-		$updateKeluar = "UPDATE keluar SET amounttrx = '$amounttrx', noref = '$nobuktimkp', statuspaymentdesc = '$statuspaymentdesc', saldoakhir = '$lastbalance' WHERE kode = '$nobuktiduta' ";
-		$sqlUpdateKeluar($con, $updateKeluar);
+		$updateKeluar = "UPDATE keluar SET amounttrx = '$amounttrx', noref = '$nobuktimkp', statuspaymentdesc = '$statuspaymentdesc', saldoakhir = '$lastbalance' WHERE kode = '$nobuktiduta'";
+		$sqlUpdateKeluar = mysqli_query($con, $updateKeluar);
 		$selectKeluar = "SELECT pintuk FROM keluar WHERE kode = '$nobuktiduta'";
 		$perintahKeluar = mysqli_query($con, $selectKeluar);
 

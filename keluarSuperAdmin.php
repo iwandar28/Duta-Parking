@@ -1,5 +1,15 @@
 <?php
-    require 'koneksiBaru.php';
+
+require 'connect.php';
+    // require 'connectLocal.php';
+
+//     define('HOST', 'localhost');
+// define('USER', 'root');
+// define('PASS', '');
+// define('DB', 'parkir');
+
+// $con = mysqli_connect(HOST,USER,PASS,DB) or die('Unable to Connect');
+
     date_default_timezone_set("Asia/Jakarta");
 
     // $mainInsert = "INSERT INTO konfirmasi VALUE('','','','','','','','','','')";
@@ -43,7 +53,7 @@
         $deleteUmum = "DELETE FROM konfirmasi WHERE pintu = '$pintuK'";
         mysqli_query($con, $deleteUmum);
         
-        $insertError1 = "INSERT INTO konfirmasi(pintu, status, waktum, waktuk) VALUES('$pintuK','berhasil',NOW(),NOW())";
+        $insertError1 = "INSERT INTO konfirmasi(pintu, status, waktum, waktuk, nama,kode) VALUES('$pintuK','200',NOW(),NOW()),'Super Admin','$kodeBaru'";
         mysqli_query($con, $insertError1);
 
         $insertError2 = "INSERT INTO keluar2(kode, masuk, keluar, bayar, norfid, pintuk, jenisk) VALUES('$kodeBaru',NOW(),NOW(),'0','$rfid','$pintuK','$jenisK')";

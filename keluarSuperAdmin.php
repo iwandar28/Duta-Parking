@@ -1,9 +1,8 @@
 <?php
 
 require 'connect.php';
-    // require 'connectLocal.php';
 
-//     define('HOST', 'localhost');
+// define('HOST', 'localhost');
 // define('USER', 'root');
 // define('PASS', '');
 // define('DB', 'parkir');
@@ -46,14 +45,15 @@ require 'connect.php';
         $response = array(
         "status"  => "200",
         "message" => "TERIMAKASIH",
-        'kode' => $kodeBaru,
+        "kode" => $kodeBaru,
         );
         echo json_encode($response);
         
         $deleteUmum = "DELETE FROM konfirmasi WHERE pintu = '$pintuK'";
         mysqli_query($con, $deleteUmum);
         
-        $insertError1 = "INSERT INTO konfirmasi(pintu, status, waktum, waktuk, nama,kode) VALUES('$pintuK','200',NOW(),NOW()),'Super Admin','$kodeBaru'";
+        $insertError1 = "INSERT INTO konfirmasi(pintu, status, waktum, waktuk, nama,kode)
+         VALUES('$pintuK','200',NOW(),NOW(),'Super Admin','$kodeBaru')";
         mysqli_query($con, $insertError1);
 
         $insertError2 = "INSERT INTO keluar2(kode, masuk, keluar, bayar, norfid, pintuk, jenisk) VALUES('$kodeBaru',NOW(),NOW(),'0','$rfid','$pintuK','$jenisK')";

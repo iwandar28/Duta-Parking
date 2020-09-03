@@ -1,13 +1,13 @@
 <?php
 
-require 'connect.php';
+// require 'connect.php';
 
-// define('HOST', 'localhost');
-// define('USER', 'root');
-// define('PASS', '');
-// define('DB', 'parkir');
+define('HOST', 'localhost');
+define('USER', 'root');
+define('PASS', '');
+define('DB', 'parkir');
 
-// $con = mysqli_connect(HOST,USER,PASS,DB) or die('Unable to Connect');
+$con = mysqli_connect(HOST,USER,PASS,DB) or die('Unable to Connect');
 
     date_default_timezone_set("Asia/Jakarta");
 
@@ -31,16 +31,20 @@ require 'connect.php';
         // $pintuk = trim(isset($_POST['pintukeluar'])) ? $_POST['pintukeluar'] : '';
         // $jenisK = trim(isset($_POST['jeniskendaraan'])) ? $_POST['jeniskendaraan'] : '';
 
+        if()
+
 
         $masukUmum = "SELECT norfid, status FROM member WHERE norfid = '$rfid' AND status = '3'";
         $perintahUmum = mysqli_query($con, $masukUmum);
         $jumlahUmum = mysqli_num_rows($perintahUmum);
 
-        $kode = "SELECT substr(concat(curdate()+0,time_to_sec(curtime()),'$pintuK'),4) as kode FROM penomeran LIMIT 1";
+        $kode = "SELECT substr(concat(curdate()+0,time_to_sec(curtime()),'1'),4) as kode FROM penomeran LIMIT 1";
         $uniqKode = mysqli_query($con, $kode);
         foreach($uniqKode as $i){
             $kodeBaru = $i['kode'];
         }
+
+
 
 
     if($jumlahUmum > 0){

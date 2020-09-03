@@ -32,6 +32,10 @@ $status = $_POST['status'];
 
 
 
+
+
+
+
 $viewdata = array(
     'status'=>200,
     'result'=>false,
@@ -42,8 +46,8 @@ $viewdata = array(
 
 $query = mysqli_query($con, 
 		"INSERT INTO member 
-		(nama, unit, statuspegawai, jeniskendaraan, nopol, pan, norfid, produk, awal, akhir, userupdate, iduser, status) VALUES('
-		$nama','$unit','$statuspegawai','$jeniskendaraan','$nopol','$pan','$norfid','$produk',
+		(nama, unit, statuspegawai, jeniskendaraan, nopol, pan, norfid, produk, awal, akhir, userupdate, iduser, status) VALUES('$nama','$unit','$statuspegawai','$jeniskendaraan',
+		'$nopol','$pan','$norfid','$produk',
 		'$awal','$akhir','$userupdate','$iduser','$status')");
 
 $viewdata['result'] = $query;

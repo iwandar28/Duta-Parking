@@ -13,11 +13,11 @@ date_default_timezone_set("Asia/Jakarta");
 
 
 	if ($_SERVER['REQUEST_METHOD']=="POST") {
-			$token = $_POST['token'];
+			$pintu = $_POST['pintu'];
 			
-			$token = trim(isset($_POST['token'])) ? $_POST['token'] : '';
+			$pintu = trim(isset($_POST['pintu'])) ? $_POST['pintu'] : '';
             
-			$select = "SELECT * FROM masuk WHERE nopol2 is NULL OR LENGTH(nopol2) = 0  LIMIT 1";
+			$select = "SELECT * FROM masuk WHERE pintu = '$pintu' AND nopol2 is NULL LIMIT 1";
 			$sqlSelect = mysqli_query($con, $select);
 			$jum  = mysqli_num_rows($sqlSelect);
 

@@ -17,15 +17,19 @@ require 'connect.php';
     if ($_SERVER['REQUEST_METHOD']=="POST") {
         //todo: deklarasi variabel
 
-        $rfid = '';
-        $jenisK = '';
-        $pintuK = '';
-        
-        //todo: deklarasi & validasi jika
+        $rfid = $_POST['rfid'];
+        $jenisK = $_POST['jeniskendaraan'];
+        $pintuK = $_POST['pintukeluar'];
 
-        $rfid = trim(isset($_POST['rfid'])) ? $_POST['rfid'] : '';
-        $pintuk = trim(isset($_POST['pintukeluar'])) ? $_POST['pintukeluar'] : '';
-        $jenisK = trim(isset($_POST['jeniskendaraan'])) ? $_POST['jeniskendaraan'] : '';
+        // $rfid = '';
+        // $jenisK = '';
+        // $pintuK = '';
+        
+        // //todo: deklarasi & validasi jika
+
+        // $rfid = trim(isset($_POST['rfid'])) ? $_POST['rfid'] : '';
+        // $pintuk = trim(isset($_POST['pintukeluar'])) ? $_POST['pintukeluar'] : '';
+        // $jenisK = trim(isset($_POST['jeniskendaraan'])) ? $_POST['jeniskendaraan'] : '';
 
 
         $masukUmum = "SELECT norfid, status FROM member WHERE norfid = '$rfid' AND status = '3'";
@@ -41,7 +45,6 @@ require 'connect.php';
 
     if($jumlahUmum > 0){
 
-
         $response = array(
         "status"  => "200",
         "message" => "TERIMAKASIH",
@@ -53,8 +56,10 @@ require 'connect.php';
         mysqli_query($con, $deleteUmum);
         
         $insertError1 = "INSERT INTO konfirmasi(pintu, status, waktum, waktuk, nama,kode)
-         VALUES('$pintuK','200',NOW(),NOW(),'Super Admin','$kodeBaru')";
+         VALUES('$pintuK','100',NOW(),NOW(),'Super Admin','$kodeBaru')";
         mysqli_query($con, $insertError1);
+
+
 
         $insertError2 = "INSERT INTO keluar2(kode, masuk, keluar, bayar, norfid, pintuk, jenisk) VALUES('$kodeBaru',NOW(),NOW(),'0','$rfid','$pintuK','$jenisK')";
         mysqli_query($con, $insertError2);

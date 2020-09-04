@@ -1,7 +1,8 @@
 <?php 
 
-    require 'connect.php';
-	require 'key.php';
+require 'connect.php';
+
+
 
 
 	if ($_SERVER['REQUEST_METHOD']=="POST") {
@@ -11,6 +12,7 @@
 			$token = '';
 			$cardnumber = '';
 			$cardtype = '';
+			$kodePintu = '';
 			
 			$rfid = trim(isset($_POST['rfid'])) ? $_POST['rfid'] : '';
 			$jenis = trim(isset($_POST['jenis'])) ? $_POST['jenis'] : '';
@@ -18,17 +20,21 @@
 			$token = trim(isset($_POST['token'])) ? $_POST['token'] : '';
 			$cardnumber = trim(isset($_POST['cardnumber'])) ? $_POST['cardnumber'] : '';
             $cardtype = trim(isset($_POST['cardtype'])) ? $_POST['cardtype'] : '';
+            $kodePintu = trim(isset($_POST['kodepintu'])) ? $_POST['kodepintu'] : '';
             
 
 
 
-            $penomeren = "SELECT substr(concat(curdate()+0,time_to_sec(curtime()),'$pintu'),4) as kode FROM penomeran LIMIT 1";
+            $penomeren = "SELECT substr(concat(curdate()+0,time_to_sec(curtime()),'$kodePintu'),4) as kode FROM penomeran LIMIT 1";
             $perintahPenomeran = mysqli_query($con, $penomeren);
             $jumPenomeran = mysqli_num_rows($perintahPenomeran);
-        
+            
+
             foreach($perintahPenomeran as $i){
                 $kode =  $i['kode'];
             }
+
+
 
             $masuk = "SELECT * FROM masuk WHERE rfid = '$rfid'";
             $sqlMasuk = mysqli_query($con, $masuk);

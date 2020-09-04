@@ -1,6 +1,6 @@
 <?php 
 
-require 'koneksiBaru.php';
+require 'connect.php';
 
 
 	$penomeren = "SELECT kode, waktu, if(now() < waktu, 'GAGAL','sukses') as status FROM `penomeran` WHERE kode = 'masuk'";
@@ -14,12 +14,14 @@ require 'koneksiBaru.php';
 	if ($_SERVER['REQUEST_METHOD']=="POST") {
 			$rfid = '';
 			$pintu = '';
+            $kodePintu = '';
 			
 			$rfid = trim(isset($_POST['rfid'])) ? $_POST['rfid'] : '';
 			$pintu = trim(isset($_POST['pintu'])) ? $_POST['pintu'] : '';
+            $kodePintu = trim(isset($_POST['kodepintu'])) ? $_POST['kodepintu'] : '';
 
             
-            $kode = "SELECT substr(concat(curdate()+0,time_to_sec(curtime()),'$pintu'),4) as kode FROM penomeran LIMIT 1";
+            $kode = "SELECT substr(concat(curdate()+0,time_to_sec(curtime()),'$kodePintu'),4) as kode FROM penomeran LIMIT 1";
             $uniqKode = mysqli_query($con, $kode);
             foreach($uniqKode as $i){
                 $kodeBaru = $i['kode'];

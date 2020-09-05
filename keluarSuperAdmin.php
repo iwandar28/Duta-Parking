@@ -31,7 +31,6 @@ require 'connect.php';
         // $pintuk = trim(isset($_POST['pintukeluar'])) ? $_POST['pintukeluar'] : '';
         // $jenisK = trim(isset($_POST['jeniskendaraan'])) ? $_POST['jeniskendaraan'] : '';
 
-        if()
 
 
         $masukUmum = "SELECT norfid, status FROM member WHERE norfid = '$rfid' AND status = '3'";
